@@ -22,13 +22,16 @@ public class Familiar extends Persona{
         super();
     }
 
-    public Familiar(String rol, String trabajo, double altura, double peso, String nombre, String edad, int id, String sexo, String estado_civil) {
-        super(nombre, edad, id, sexo, estado_civil);
+    public Familiar(String rol, String trabajo, double altura, double peso, String nombre, int edad, int id, String sexo, String estado_civil, String contraseña) {
+        super(nombre, edad, id, sexo, estado_civil, contraseña);
         this.rol = rol;
         this.trabajo = trabajo;
         this.altura = altura;
         this.peso = peso;
     }
+
+    
+    
 
     public String getRol() {
         return rol;

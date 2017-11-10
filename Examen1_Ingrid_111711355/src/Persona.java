@@ -13,22 +13,34 @@ import java.util.ArrayList;
  */
 public class Persona {
     private String nombre;
-    private String edad;
+    private int edad;
     private int id;
     private String sexo;
     private String estado_civil;
+    private String contraseña;
     private ArrayList<String> lista = new ArrayList();
 
     public Persona() {
     }
 
-    public Persona(String nombre, String edad, int id, String sexo, String estado_civil) {
+    public Persona(String nombre, int edad, int id, String sexo, String estado_civil, String contraseña) {
         this.nombre = nombre;
         this.edad = edad;
         this.id = id;
         this.sexo = sexo;
         this.estado_civil = estado_civil;
+        this.contraseña = contraseña;
     }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    
 
     public String getNombre() {
         return nombre;
@@ -38,11 +50,11 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
@@ -80,7 +92,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + '}';
+        return "Persona{" + "nombre=" + nombre +" contraseña "+ contraseña+ '}';
     }
     
     

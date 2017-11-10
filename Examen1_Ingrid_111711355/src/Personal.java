@@ -10,13 +10,24 @@
  */
 public class Personal extends Persona {
     private String ocupacion;
-    private int horario;
+    private String horario;
     private int tiempo_trabajando;
     private double sueldo;
 
     public Personal() {
         super();
     }
+
+    public Personal(String ocupacion, String horario, int tiempo_trabajando, double sueldo, String nombre, int edad, int id, String sexo, String estado_civil, String contraseña) {
+        super(nombre, edad, id, sexo, estado_civil, contraseña);
+        this.ocupacion = ocupacion;
+        this.horario = horario;
+        this.tiempo_trabajando = tiempo_trabajando;
+        this.sueldo = sueldo;
+    }
+
+    
+    
 
     public String getOcupacion() {
         return ocupacion;
@@ -26,11 +37,11 @@ public class Personal extends Persona {
         this.ocupacion = ocupacion;
     }
 
-    public int getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(int horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
 
