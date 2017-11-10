@@ -75,7 +75,7 @@ public class Familiar extends Persona{
 
     @Override
     public String toString() {
-        return "Familiar{" + "rol=" + rol + '}';
+        return   rol ;
     }
 
     

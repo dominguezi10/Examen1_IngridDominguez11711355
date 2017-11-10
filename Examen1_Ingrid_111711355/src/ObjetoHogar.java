@@ -22,13 +22,15 @@ public class ObjetoHogar extends Objeto {
         super();
     }
 
-    public ObjetoHogar(int tiempo, String area, String instrucciones, Date fecha, Color color, String descripcion, String marca, int tamano, int calidad, double precio, Persona dueño) {
+    public ObjetoHogar(int tiempo, String area, String instrucciones, Date fecha, Color color, String descripcion, String marca, int tamano, int calidad, double precio, String dueño) {
         super(color, descripcion, marca, tamano, calidad, precio, dueño);
         this.tiempo = tiempo;
         this.area = area;
         this.instrucciones = instrucciones;
         this.fecha = fecha;
     }
+
+    
 
     public int getTiempo() {
         return tiempo;

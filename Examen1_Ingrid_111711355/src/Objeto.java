@@ -18,12 +18,12 @@ public class Objeto{
     private int tamano;
     private int calidad;
     private double precio;
-    private Persona dueño;
+    private String dueño;
 
     public Objeto() {
     }
 
-    public Objeto(Color color, String descripcion, String marca, int tamano, int calidad, double precio, Persona dueño) {
+    public Objeto(Color color, String descripcion, String marca, int tamano, int calidad, double precio, String dueño) {
         this.color = color;
         this.descripcion = descripcion;
         this.marca = marca;
@@ -83,17 +83,17 @@ public class Objeto{
         this.precio = precio;
     }
 
-    public Persona getDueño() {
+    public String getDueño() {
         return dueño;
     }
 
-    public void setDueño(Persona dueño) {
+    public void setDueño(String dueño) {
         this.dueño = dueño;
     }
 
     @Override
     public String toString() {
-        return "Objeto{" + "descripcion=" + descripcion + '}';
+        return "";
     }
     
     
