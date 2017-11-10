@@ -268,6 +268,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(cb_objetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 348, 104, -1));
 
         bt_guardarF.setText("Guardar");
+        bt_guardarF.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_guardarFMouseClicked(evt);
+            }
+        });
         jPanel4.add(bt_guardarF, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 366, 97, 33));
 
         jLabel42.setText("Contraseña");
@@ -448,12 +453,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_nombrePActionPerformed
 
     private void bt_guardarPMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarPMouseDragged
-      
+
 
     }//GEN-LAST:event_bt_guardarPMouseDragged
 
     private void bt_guardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarPMouseClicked
-         // TODO add your handling code here:
+        // TODO add your handling code here:
         String nombre;
         int edad;
         int idP;
@@ -469,43 +474,102 @@ public class Principal extends javax.swing.JFrame {
             edad = Integer.parseInt(t_edadP.getText());
             idP = id;
             id++;
-            if(rb_fP.isSelected()){
+            if (rb_fP.isSelected()) {
                 sexo = "F";
-            }else{
+            } else {
                 sexo = "M";
             }
-            
+
             estado_civil = t_estadoCivilP.getText();
             ocupacion = t_ocupacion.getText();
-            horario = t_hE.getText()+ "-"+t_hS.getText();
-           // long n = ((new Date()).getTime() -  (c_fechaP.getDate()).getTime() ) /(1000 * 60 * 60) ;
-            tiempo_trabajando = Integer.parseInt( ""+  ((new Date()).getTime() -  (c_fechaP.getDate()).getTime() ) /(1000 * 60 * 60) );
-            sueldo  = Double.parseDouble(t_sueldoP.getText());
-           contraseña = t_contraseñaP.getText(); 
-            
+            horario = t_hE.getText() + "-" + t_hS.getText();
+            // long n = ((new Date()).getTime() -  (c_fechaP.getDate()).getTime() ) /(1000 * 60 * 60) ;
+            tiempo_trabajando = Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP.getDate()).getTime()) / (1000 * 60 * 60));
+            sueldo = Double.parseDouble(t_sueldoP.getText());
+            contraseña = t_contraseñaP.getText();
+
             personas.add(new Personal(ocupacion, horario, tiempo_trabajando, sueldo, nombre, edad, id, sexo, estado_civil, contraseña));
-            System.out.println(personas.get(personas.size()-1));
-           t_nombreP.setText("");
-           t_edadP.setText("");
-           rb_fP.setSelected(true);
-           rb_mP.setSelected(false);
-           t_estadoCivilP.setText("");
-           t_ocupacion.setText("");
-           t_hE.setText("");
-           t_hS.setText("");
-           c_fechaP.setDate(new Date());
-           t_sueldoP.setText("");
-           t_contraseñaP.setText("");
-           
+            System.out.println(personas.get(personas.size() - 1));
+            t_nombreP.setText("");
+            t_edadP.setText("");
+            rb_fP.setSelected(true);
+            rb_mP.setSelected(false);
+            t_estadoCivilP.setText("");
+            t_ocupacion.setText("");
+            t_hE.setText("");
+            t_hS.setText("");
+            c_fechaP.setDate(new Date());
+            t_sueldoP.setText("");
+            t_contraseñaP.setText("");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
         }
-        
+
     }//GEN-LAST:event_bt_guardarPMouseClicked
 
     private void t_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_contraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_t_contraseñaActionPerformed
+
+    private void bt_guardarFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarFMouseClicked
+        String nombre;
+        int edad;
+        int idF;
+        String sexo;
+        String estado_civil;
+        String contraseña;
+        String rol = "";
+        String trabajo;
+        double altura;
+        double peso;
+
+        try {
+            nombre = t_nombre.getText();
+            edad = Integer.parseInt(t_edad.getText());
+            idF = id;
+            id++;
+            if (rb_f.isSelected()) {
+                sexo = "F";
+            } else {
+                sexo = "M";
+            }
+
+            estado_civil = t_estadoCivil.getText();
+           contraseña = t_contraseña.getText();
+           trabajo = t_trabajo.getText();
+           altura = Double.parseDouble(t_altura.getText());
+           peso = Double.parseDouble(t_peso.getText());
+           
+           if(cb_rolles.getSelectedItem().toString().equals("Madre") && madre == 0){
+               madre++;
+               rol = cb_rolles.getSelectedItem().toString();
+           }else if(cb_rolles.getSelectedItem().toString().equals("Padre") && padre == 0){
+               padre++;
+               rol = cb_rolles.getSelectedItem().toString();
+           }else if(cb_rolles.getSelectedItem().toString().equals("Hermana") && hermanas <= 4){
+               hermanas++;
+                rol = cb_rolles.getSelectedItem().toString();
+           }else if(cb_rolles.getSelectedItem().toString().equals("Hermano") && hermano ==0){
+               hermano++;
+               rol = cb_rolles.getSelectedItem().toString();
+           }else if(cb_rolles.getSelectedItem().toString().equals("Esposo") && esposo ==0){
+               esposo++;
+               rol = cb_rolles.getSelectedItem().toString();
+           }
+            
+           if(rol.length()>0){
+               personas.add(new Familiar(rol, trabajo, altura, peso, nombre, edad, idF, sexo, estado_civil, contraseña));
+               idF++;
+               System.out.println(personas.get(personas.size()-1));
+           }else{
+               JOptionPane.showMessageDialog(null, "Es posible que ya no se puedad agregar usuarios con ese roll");
+           }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
+        }
+    }//GEN-LAST:event_bt_guardarFMouseClicked
 
     /**
      * @param args the command line arguments
@@ -643,7 +707,10 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Persona> personas = new ArrayList();
-    int madre = 0; int padre = 0; int hermanas = 0; int hermano = 0; int esposo = 0, id = 0;
-    
+    int madre = 0;
+    int padre = 0;
+    int hermanas = 0;
+    int hermano = 0;
+    int esposo = 0, id = 0;
 
 }// fin
