@@ -1672,6 +1672,7 @@ public class Principal extends javax.swing.JFrame {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
         modelo.removeElement(cb_eliminar.getSelectedItem());
         JOptionPane.showMessageDialog(this, "Pesona Eliminada");
+        cb_eliminar.setModel(modelo);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void bt_zapatos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_zapatos2ActionPerformed
