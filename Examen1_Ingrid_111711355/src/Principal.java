@@ -144,7 +144,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel59 = new javax.swing.JLabel();
         t_estadoCivil1 = new javax.swing.JTextField();
         jLabel60 = new javax.swing.JLabel();
-        cb_rolles1 = new javax.swing.JComboBox<>();
         jLabel61 = new javax.swing.JLabel();
         t_trabajo1 = new javax.swing.JTextField();
         jLabel62 = new javax.swing.JLabel();
@@ -156,6 +155,9 @@ public class Principal extends javax.swing.JFrame {
         bt_guardarF1 = new javax.swing.JButton();
         jLabel65 = new javax.swing.JLabel();
         t_contraseña1 = new javax.swing.JTextField();
+        jLabel90 = new javax.swing.JLabel();
+        Roll_familiar = new javax.swing.JLabel();
+        cb_familiares = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         jLabel66 = new javax.swing.JLabel();
         jLabel67 = new javax.swing.JLabel();
@@ -214,11 +216,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         t_estadoCivilP1 = new javax.swing.JTextField();
         jLabel49 = new javax.swing.JLabel();
-        t_ocupacion1 = new javax.swing.JTextField();
+        t_ocupacionP1 = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
-        t_hE1 = new javax.swing.JTextField();
+        t_hEP1 = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
-        t_hS1 = new javax.swing.JTextField();
+        t_hSP1 = new javax.swing.JTextField();
         jLabel52 = new javax.swing.JLabel();
         c_fechaP1 = new com.toedter.calendar.JDateChooser();
         bt_guardarP1 = new javax.swing.JButton();
@@ -588,9 +590,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel60.setText("Roll");
         jPanel8.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 168, 53, 25));
 
-        cb_rolles1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Madre", "Padre", "Hermana", "Hermano", "Esposo" }));
-        jPanel8.add(cb_rolles1, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 170, 110, -1));
-
         jLabel61.setText("Trabajo");
         jPanel8.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 230, 53, 29));
         jPanel8.add(t_trabajo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 232, 140, 24));
@@ -625,6 +624,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jPanel8.add(t_contraseña1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 130, -1));
+
+        jLabel90.setText("Familiares");
+        jPanel8.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 100, 20));
+        jPanel8.add(Roll_familiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 90, 30));
+
+        cb_familiares.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_familiaresItemStateChanged(evt);
+            }
+        });
+        jPanel8.add(cb_familiares, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 150, -1));
 
         jTabbedPane3.addTab("Familiar", jPanel8);
 
@@ -713,6 +723,12 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel80.setText("Talla");
         jPanel9.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 40, 30));
+
+        t_tallaZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tallaZ1ActionPerformed(evt);
+            }
+        });
         jPanel9.add(t_tallaZ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 60, -1));
         jPanel9.add(t_tiempoVida1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 60, -1));
 
@@ -724,6 +740,11 @@ public class Principal extends javax.swing.JFrame {
         bt_zapatos2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_zapatos2MouseClicked(evt);
+            }
+        });
+        bt_zapatos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_zapatos2ActionPerformed(evt);
             }
         });
         jPanel9.add(bt_zapatos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
@@ -816,15 +837,15 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel49.setText("Ocupación");
         jPanel7.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 212, 65, 25));
-        jPanel7.add(t_ocupacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 212, 178, 25));
+        jPanel7.add(t_ocupacionP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 212, 178, 25));
 
         jLabel50.setText("Hora Entrada");
         jPanel7.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 268, 75, 25));
-        jPanel7.add(t_hE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 270, 84, -1));
+        jPanel7.add(t_hEP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 270, 84, -1));
 
         jLabel51.setText("Hora Salida");
         jPanel7.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(253, 264, 73, 32));
-        jPanel7.add(t_hS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 92, -1));
+        jPanel7.add(t_hSP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 92, -1));
 
         jLabel52.setText("Fecha de Inicio  de Tranajo");
         jPanel7.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 330, 145, 23));
@@ -1002,8 +1023,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addElement(personas.get(personas.size() - 1));
             cb_personalModificar.setModel(modelo); // refrescamos
             cb_eliminar.setModel(modelo);
-            
-            
+
             t_nombreP.setText("");
             t_edadP.setText("");
             rb_fP.setSelected(true);
@@ -1081,6 +1101,7 @@ public class Principal extends javax.swing.JFrame {
                 cb_dueño.setModel(modelo); // refrescamos
                 cb_dueño1.setModel(modelo);
                 cb_eliminar.setModel(modelo);
+                cb_familiares.setModel(modelo);
             } else {
                 JOptionPane.showMessageDialog(null, "Es posible que ya no se puedad agregar usuarios con ese roll");
             }
@@ -1129,6 +1150,7 @@ public class Principal extends javax.swing.JFrame {
             modelo.addElement(objetos.get(objetos.size() - 1));
             cb_objetos.setModel(modelo); // refrescamos
             cb_ObjetosModificar.setModel(modelo);
+            cb_objetos1.setModel(modelo);
 
             bt_color.setBackground(color.red);
             ta_descripcion1.setText("");
@@ -1180,6 +1202,7 @@ public class Principal extends javax.swing.JFrame {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
             modelo.addElement(objetos.get(objetos.size() - 1));
             cb_objetos.setModel(modelo); // refrescamos
+            cb_objetos1.setModel(modelo);
 
             bt_color.setBackground(color.red);
             ta_descripcion1.setText("");
@@ -1227,6 +1250,7 @@ public class Principal extends javax.swing.JFrame {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
             modelo.addElement(objetos.get(objetos.size() - 1));
             cb_objetos.setModel(modelo); // refrescamos
+            cb_objetos1.setModel(modelo);
 
             bt_color.setBackground(color.red);
             ta_descripcion1.setText("");
@@ -1257,30 +1281,23 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_guardarP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarP1MouseClicked
         try {
-            seleccionado.setContraseña(t_contraseña1.getText());
-            seleccionado.setEdad(Integer.parseInt(t_edad1.getText()));
-            seleccionado.setHorario(t_hE1.getText() + "-" + t_hS1.getText());
-            seleccionado.setEstado_civil(t_estadoCivil1.getText());
-            seleccionado.setNombre(t_nombre1.getText());
-            seleccionado.setOcupacion(t_ocupacion1.getText());
-            if (rb_f1.isSelected()) {
-                seleccionado.setSexo("F");
-            } else {
-                seleccionado.setSexo("M");
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel();
+            ((Personal) modelo.getSelectedItem()).setContraseña(t_contraseñaP1.getText());
+            ((Personal) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edadP1.getText()));
+            ((Personal) modelo.getSelectedItem()).setHorario(t_hEP1.getText() + "-" + t_hSP1.getText());
+            ((Personal) modelo.getSelectedItem()).setEstado_civil(t_estadoCivilP1.getText());
+            ((Personal) modelo.getSelectedItem()).setNombre(t_nombreP1.getText());
+            ((Personal) modelo.getSelectedItem()).setOcupacion(t_ocupacionP1.getText());
+            if(rb_fP1.isSelected()){
+                ((Personal) modelo.getSelectedItem()).setSexo("F");
+            }else{
+                ((Personal) modelo.getSelectedItem()).setSexo("M");
             }
 
-            seleccionado.setSueldo(Double.parseDouble(t_sueldoP1.getText()));
-            seleccionado.setTiempo_trabajando(Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP1.getDate()).getTime()) / (1000 * 60 * 60)));
-
-            for (int i = 0; i < personas.size(); i++) {
-                if (personas.get(i).getId() == seleccionado.getId()) {
-                    personas.remove(i);
-                    personas.add(seleccionado);
-                    DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel(); // capturamos la vista del modelo
-                    modelo.addElement(personas.get(personas.size() - 1));
-                    cb_personalModificar.setModel(modelo); // refrescamos
-                }
-            }
+            ((Personal) modelo.getSelectedItem()).setSueldo(Double.parseDouble(t_sueldoP1.getText()));
+            ((Personal) modelo.getSelectedItem()).setTiempo_trabajando(Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP1.getDate()).getTime()) / (1000 * 60 * 60)));
+            cb_personalModificar.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
         }
@@ -1293,7 +1310,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_nombre1ActionPerformed
 
     private void bt_guardarF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarF1MouseClicked
-        // TODO add your handling code here:
+        try {
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_familiares.getModel();
+            ((Familiar) modelo.getSelectedItem()).setAltura(Double.parseDouble(t_altura1.getText()));
+            ((Familiar) modelo.getSelectedItem()).setContraseña(t_contraseña1.getText());
+            ((Familiar) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edad1.getText()));
+            ((Familiar) modelo.getSelectedItem()).setEstado_civil(t_estadoCivil1.getText());
+            ((Familiar) modelo.getSelectedItem()).setNombre(t_nombre1.getText());
+            ((Familiar) modelo.getSelectedItem()).setPeso(Double.parseDouble(t_peso1.getText()));
+            ((Familiar) modelo.getSelectedItem()).setRol(Roll_familiar.getText());
+            ((Familiar) modelo.getSelectedItem()).setTrabajo(t_trabajo1.getText());
+            if(rb_f1.isSelected()){
+                ((Familiar) modelo.getSelectedItem()).setSexo("F");
+            }else{
+                ((Familiar) modelo.getSelectedItem()).setSexo("M");
+            }
+            
+            
+            
+            cb_familiares.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error del sistema");
+        }
     }//GEN-LAST:event_bt_guardarF1MouseClicked
 
     private void t_contraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_contraseña1ActionPerformed
@@ -1309,12 +1348,46 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_suela1ActionPerformed
 
     private void bt_Ropa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_Ropa1MouseClicked
-        // TODO add your handling code here:
+        try {
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+            ((Ropa) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+            ((Ropa) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+            ((Ropa) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+            ((Ropa) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+            ((Ropa) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+            ((Ropa) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+            ((Ropa) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+            ((Ropa) modelo.getSelectedItem()).setMaterial(t_material1.getText());
+            ((Ropa) modelo.getSelectedItem()).setPais(t_paisElaboracion1.getText());
+            ((Ropa) modelo.getSelectedItem()).setTalla(t_tallaRopa1.getText());
+
+            cb_ObjetosModificar.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error del sistema");
+        }
     }//GEN-LAST:event_bt_Ropa1MouseClicked
 
     private void bt_zapatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_zapatos2MouseClicked
         try {
-            
+            ob1.setCalidad(Integer.parseInt(t_calidad1.getText()));
+            ob1.setColor(bt_color1.getBackground());
+            //ob1.setConfort();
+
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+            ((Zapatos) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+            ((Zapatos) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+            ((Zapatos) modelo.getSelectedItem()).setConfort(Integer.parseInt(t_confort1.getText()));
+            ((Zapatos) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+            ((Zapatos) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+            ((Zapatos) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+            ((Zapatos) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+            ((Zapatos) modelo.getSelectedItem()).setSuela(t_suela1.getText());
+            ((Zapatos) modelo.getSelectedItem()).setTalla(Integer.parseInt(t_tallaZ1.getText()));
+            ((Zapatos) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+
+            cb_ObjetosModificar.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
         }
@@ -1322,7 +1395,24 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_zapatos2MouseClicked
 
     private void bt_guardarHogar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarHogar1MouseClicked
-        // TODO add your handling code here:
+        try {
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+            ((ObjetoHogar) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+            ((ObjetoHogar) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+            ((ObjetoHogar) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+            ((ObjetoHogar) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+            ((ObjetoHogar) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+            ((ObjetoHogar) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+            ((ObjetoHogar) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+            ((ObjetoHogar) modelo.getSelectedItem()).setFecha(c_fechaObjeto1.getDate());
+            ((ObjetoHogar) modelo.getSelectedItem()).setInstrucciones(ta_descripcion2.getText());
+            ((ObjetoHogar) modelo.getSelectedItem()).setTiempo(Integer.parseInt(t_tiempoVida1.getText()));
+            ((ObjetoHogar) modelo.getSelectedItem()).setArea(cb_area1.getSelectedItem().toString());
+            cb_ObjetosModificar.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error del sistema");
+        }
     }//GEN-LAST:event_bt_guardarHogar1MouseClicked
 
     private void cb_personalModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_personalModificarActionPerformed
@@ -1350,10 +1440,10 @@ public class Principal extends javax.swing.JFrame {
             }
 
             this.t_estadoCivilP1.setText(seleccionado.getEstado_civil());
-            this.t_ocupacion1.setText(seleccionado.getOcupacion());
+            this.t_ocupacionP1.setText(seleccionado.getOcupacion());
             String array[] = seleccionado.getHorario().split("-");
-            this.t_hE1.setText("" + array[0]);
-            this.t_hS1.setText("" + array[1]);
+            this.t_hEP1.setText("" + array[0]);
+            this.t_hSP1.setText("" + array[1]);
             this.c_fechaP1.setDate(new Date());
             this.t_sueldoP1.setText("" + seleccionado.getSueldo());
             this.t_contraseñaP1.setText("" + seleccionado.getContraseña());
@@ -1364,7 +1454,7 @@ public class Principal extends javax.swing.JFrame {
         if (evt.getStateChange() == 1) {
             Objeto b = (Objeto) cb_ObjetosModificar.getSelectedItem();
             this.bt_color1.setBackground(b.getColor());
-            this.ta_descripcion1.setText(b.getDescripcion());
+            this.ta_descripcion3.setText(b.getDescripcion());
             this.t_marca1.setText(b.getMarca());
             this.t_tamano1.setText("" + b.getTamano());
             this.t_calidad1.setText("" + b.getCalidad());
@@ -1373,13 +1463,18 @@ public class Principal extends javax.swing.JFrame {
             if (b instanceof Zapatos) {
                 this.t_tallaZ1.setText("" + ((Zapatos) b).getTalla());
                 this.t_suela1.setText(((Zapatos) b).getSuela());
-                this.t_confort1.setText("");
+                this.t_confort1.setText("" + ((Zapatos) b).getConfort());
                 ob1 = (Zapatos) b;
+                System.out.println(ob1.toString());
             } else if (b instanceof Ropa) {
                 this.t_tallaRopa1.setText(((Ropa) b).getTalla());
                 this.t_material1.setText(((Ropa) b).getMaterial());
                 this.t_paisElaboracion1.setText(((Ropa) b).getPais());
                 ob2 = (Ropa) b;
+            } else if (b instanceof ObjetoHogar) {
+                this.t_tiempoVida1.setText("" + ((ObjetoHogar) b).getTiempo());
+                this.ta_descripcion2.setText(((ObjetoHogar) b).getInstrucciones());
+                this.c_fechaObjeto1.setDate(((ObjetoHogar) b).getFecha());
             }
         }
     }//GEN-LAST:event_cb_ObjetosModificarItemStateChanged
@@ -1394,10 +1489,40 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         personas.remove(cb_eliminar.getSelectedItem());
-      DefaultComboBoxModel  modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
-      modelo.removeElement(cb_eliminar.getSelectedItem());
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
+        modelo.removeElement(cb_eliminar.getSelectedItem());
         JOptionPane.showMessageDialog(this, "Pesona Eliminada");
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void bt_zapatos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_zapatos2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_zapatos2ActionPerformed
+
+    private void t_tallaZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tallaZ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_t_tallaZ1ActionPerformed
+
+    private void cb_familiaresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_familiaresItemStateChanged
+        if (evt.getStateChange() == 1) {
+            Familiar b = (Familiar) cb_familiares.getSelectedItem();
+            this.t_nombre1.setText(b.getNombre());
+            this.t_contraseña1.setText(b.getContraseña());
+            this.t_edad1.setText(""+b.getEdad());
+            this.t_estadoCivil1.setText(b.getEstado_civil());
+            if(b.getSexo().equals("F")){
+                this.rb_f1.setSelected(true);
+                this.rb_m1.setSelected(false);
+            }else{
+                this.rb_f1.setSelected(false);
+                this.rb_m1.setSelected(true);
+            }
+            
+            this.Roll_familiar.setText(b.getRol());
+            this.t_altura1.setText(""+b.getAltura());
+            this.t_peso1.setText(""+b.getPeso());
+            
+        }
+    }//GEN-LAST:event_cb_familiaresItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1435,6 +1560,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Roll_familiar;
     private javax.swing.JButton bt_Ropa;
     private javax.swing.JButton bt_Ropa1;
     private javax.swing.JButton bt_color;
@@ -1457,11 +1583,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_dueño;
     private javax.swing.JComboBox<String> cb_dueño1;
     private javax.swing.JComboBox<String> cb_eliminar;
+    private javax.swing.JComboBox<String> cb_familiares;
     private javax.swing.JComboBox<String> cb_objetos;
     private javax.swing.JComboBox<String> cb_objetos1;
     private javax.swing.JComboBox<String> cb_personalModificar;
     private javax.swing.JComboBox<String> cb_rolles;
-    private javax.swing.JComboBox<String> cb_rolles1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1552,6 +1678,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1597,9 +1724,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField t_estadoCivilP;
     private javax.swing.JTextField t_estadoCivilP1;
     private javax.swing.JTextField t_hE;
-    private javax.swing.JTextField t_hE1;
+    private javax.swing.JTextField t_hEP1;
     private javax.swing.JTextField t_hS;
-    private javax.swing.JTextField t_hS1;
+    private javax.swing.JTextField t_hSP1;
     private javax.swing.JTextField t_marca;
     private javax.swing.JTextField t_marca1;
     private javax.swing.JTextField t_material;
@@ -1609,7 +1736,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField t_nombreP;
     private javax.swing.JTextField t_nombreP1;
     private javax.swing.JTextField t_ocupacion;
-    private javax.swing.JTextField t_ocupacion1;
+    private javax.swing.JTextField t_ocupacionP1;
     private javax.swing.JTextField t_paisElaboracion;
     private javax.swing.JTextField t_paisElaboracion1;
     private javax.swing.JTextField t_peso;
