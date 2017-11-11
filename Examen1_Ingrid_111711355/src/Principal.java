@@ -200,6 +200,8 @@ public class Principal extends javax.swing.JFrame {
         bt_guardarHogar1 = new javax.swing.JButton();
         jLabel86 = new javax.swing.JLabel();
         cb_dueño1 = new javax.swing.JComboBox<>();
+        jLabel88 = new javax.swing.JLabel();
+        cb_ObjetosModificar = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -227,6 +229,9 @@ public class Principal extends javax.swing.JFrame {
         cb_personalModificar = new javax.swing.JComboBox<>();
         jLabel87 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel89 = new javax.swing.JLabel();
+        cb_eliminar = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -352,6 +357,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 168, 53, 25));
 
         cb_rolles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Madre", "Padre", "Hermana", "Hermano", "Esposo" }));
+        cb_rolles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_rollesActionPerformed(evt);
+            }
+        });
         jPanel4.add(cb_rolles, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 170, 110, -1));
 
         jLabel7.setText("Trabajo");
@@ -375,6 +385,11 @@ public class Principal extends javax.swing.JFrame {
         bt_guardarF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_guardarFMouseClicked(evt);
+            }
+        });
+        bt_guardarF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_guardarFActionPerformed(evt);
             }
         });
         jPanel4.add(bt_guardarF, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 366, 97, 33));
@@ -616,8 +631,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel66.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel66.setText("Nuevo Objeto");
-        jPanel9.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 11, 134, 30));
+        jLabel66.setText("Modificar Objeto");
+        jPanel9.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 190, 30));
 
         jLabel67.setText("Color");
         jPanel9.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 59, 50, 24));
@@ -751,6 +766,16 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel9.add(cb_dueño1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 100, -1));
 
+        jLabel88.setText("Objetos");
+        jPanel9.add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 110, 30));
+
+        cb_ObjetosModificar.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_ObjetosModificarItemStateChanged(evt);
+            }
+        });
+        jPanel9.add(cb_ObjetosModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 130, 30));
+
         jTabbedPane3.addTab("Objeto", jPanel9);
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -868,15 +893,41 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Modificar", jPanel2);
 
+        jLabel89.setText("Eliminar");
+
+        jButton1.setText("Eliminar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(cb_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel89, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel3);
@@ -950,6 +1001,9 @@ public class Principal extends javax.swing.JFrame {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel(); // capturamos la vista del modelo
             modelo.addElement(personas.get(personas.size() - 1));
             cb_personalModificar.setModel(modelo); // refrescamos
+            cb_eliminar.setModel(modelo);
+            
+            
             t_nombreP.setText("");
             t_edadP.setText("");
             rb_fP.setSelected(true);
@@ -1025,7 +1079,8 @@ public class Principal extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_dueño.getModel(); // capturamos la vista del modelo
                 modelo.addElement(personas.get(personas.size() - 1));
                 cb_dueño.setModel(modelo); // refrescamos
-
+                cb_dueño1.setModel(modelo);
+                cb_eliminar.setModel(modelo);
             } else {
                 JOptionPane.showMessageDialog(null, "Es posible que ya no se puedad agregar usuarios con ese roll");
             }
@@ -1073,6 +1128,7 @@ public class Principal extends javax.swing.JFrame {
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
             modelo.addElement(objetos.get(objetos.size() - 1));
             cb_objetos.setModel(modelo); // refrescamos
+            cb_ObjetosModificar.setModel(modelo);
 
             bt_color.setBackground(color.red);
             ta_descripcion1.setText("");
@@ -1216,7 +1272,6 @@ public class Principal extends javax.swing.JFrame {
             seleccionado.setSueldo(Double.parseDouble(t_sueldoP1.getText()));
             seleccionado.setTiempo_trabajando(Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP1.getDate()).getTime()) / (1000 * 60 * 60)));
 
-            
             for (int i = 0; i < personas.size(); i++) {
                 if (personas.get(i).getId() == seleccionado.getId()) {
                     personas.remove(i);
@@ -1229,7 +1284,6 @@ public class Principal extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
         }
-        
 
 
     }//GEN-LAST:event_bt_guardarP1MouseClicked
@@ -1259,7 +1313,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_Ropa1MouseClicked
 
     private void bt_zapatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_zapatos2MouseClicked
-        // TODO add your handling code here:
+        try {
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
+        }
+
     }//GEN-LAST:event_bt_zapatos2MouseClicked
 
     private void bt_guardarHogar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarHogar1MouseClicked
@@ -1300,6 +1359,43 @@ public class Principal extends javax.swing.JFrame {
             this.t_contraseñaP1.setText("" + seleccionado.getContraseña());
         }
     }//GEN-LAST:event_cb_personalModificarItemStateChanged
+
+    private void cb_ObjetosModificarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ObjetosModificarItemStateChanged
+        if (evt.getStateChange() == 1) {
+            Objeto b = (Objeto) cb_ObjetosModificar.getSelectedItem();
+            this.bt_color1.setBackground(b.getColor());
+            this.ta_descripcion1.setText(b.getDescripcion());
+            this.t_marca1.setText(b.getMarca());
+            this.t_tamano1.setText("" + b.getTamano());
+            this.t_calidad1.setText("" + b.getCalidad());
+            this.t_precio1.setText("" + b.getPrecio());
+
+            if (b instanceof Zapatos) {
+                this.t_tallaZ1.setText("" + ((Zapatos) b).getTalla());
+                this.t_suela1.setText(((Zapatos) b).getSuela());
+                this.t_confort1.setText("");
+                ob1 = (Zapatos) b;
+            } else if (b instanceof Ropa) {
+                this.t_tallaRopa1.setText(((Ropa) b).getTalla());
+                this.t_material1.setText(((Ropa) b).getMaterial());
+                this.t_paisElaboracion1.setText(((Ropa) b).getPais());
+                ob2 = (Ropa) b;
+            }
+        }
+    }//GEN-LAST:event_cb_ObjetosModificarItemStateChanged
+
+    private void cb_rollesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_rollesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_rollesActionPerformed
+
+    private void bt_guardarFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_guardarFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_guardarFActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        personas.remove(cb_eliminar.getSelectedItem());
+        JOptionPane.showMessageDialog(this, "Pesona Eliminada");
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1353,15 +1449,18 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser c_fechaObjeto1;
     private com.toedter.calendar.JDateChooser c_fechaP;
     private com.toedter.calendar.JDateChooser c_fechaP1;
+    private javax.swing.JComboBox<String> cb_ObjetosModificar;
     private javax.swing.JComboBox<String> cb_area;
     private javax.swing.JComboBox<String> cb_area1;
     private javax.swing.JComboBox<String> cb_dueño;
     private javax.swing.JComboBox<String> cb_dueño1;
+    private javax.swing.JComboBox<String> cb_eliminar;
     private javax.swing.JComboBox<String> cb_objetos;
     private javax.swing.JComboBox<String> cb_objetos1;
     private javax.swing.JComboBox<String> cb_personalModificar;
     private javax.swing.JComboBox<String> cb_rolles;
     private javax.swing.JComboBox<String> cb_rolles1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1448,6 +1547,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1541,5 +1642,7 @@ public class Principal extends javax.swing.JFrame {
     int hermano = 0;
     int esposo = 0, id = 0;
     Personal seleccionado;
-
+    Zapatos ob1;
+    Ropa ob2;
+    ObjetoHogar ob3;
 }// fin
