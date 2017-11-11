@@ -1394,6 +1394,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         personas.remove(cb_eliminar.getSelectedItem());
+      DefaultComboBoxModel  modelo = (DefaultComboBoxModel) cb_eliminar.getModel();
+      modelo.removeElement(cb_eliminar.getSelectedItem());
         JOptionPane.showMessageDialog(this, "Pesona Eliminada");
     }//GEN-LAST:event_jButton1MouseClicked
 
