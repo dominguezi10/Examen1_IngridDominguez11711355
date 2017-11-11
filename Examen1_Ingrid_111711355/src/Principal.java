@@ -486,6 +486,11 @@ public class Principal extends javax.swing.JFrame {
                 bt_RopaMouseClicked(evt);
             }
         });
+        bt_Ropa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_RopaActionPerformed(evt);
+            }
+        });
         jPanel6.add(bt_Ropa, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, -1, -1));
 
         jLabel33.setText("Pais Elaboración");
@@ -779,6 +784,9 @@ public class Principal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_guardarHogar1MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_guardarHogar1MouseEntered(evt);
+            }
         });
         jPanel9.add(bt_guardarHogar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, -1));
 
@@ -988,56 +996,62 @@ public class Principal extends javax.swing.JFrame {
 
     private void bt_guardarPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarPMouseClicked
         // TODO add your handling code here:
-        String nombre;
-        int edad;
-        int idP;
-        String sexo;
-        String estado_civil;
-        String ocupacion;
-        String horario;
-        int tiempo_trabajando;
-        String contraseña;
-        double sueldo;
-        try {
-            nombre = t_nombreP.getText();
-            edad = Integer.parseInt(t_edadP.getText());
-            idP = id;
-            id++;
-            if (rb_fP.isSelected()) {
-                sexo = "F";
-            } else {
-                sexo = "M";
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            String nombre;
+            int edad;
+            int idP;
+            String sexo;
+            String estado_civil;
+            String ocupacion;
+            String horario;
+            int tiempo_trabajando;
+            String contraseña;
+            double sueldo;
+            try {
+                nombre = t_nombreP.getText();
+                edad = Integer.parseInt(t_edadP.getText());
+                idP = id;
+                id++;
+                if (rb_fP.isSelected()) {
+                    sexo = "F";
+                } else {
+                    sexo = "M";
+                }
+
+                estado_civil = t_estadoCivilP.getText();
+                ocupacion = t_ocupacion.getText();
+                horario = t_hE.getText() + "-" + t_hS.getText();
+                // long n = ((new Date()).getTime() -  (c_fechaP.getDate()).getTime() ) /(1000 * 60 * 60) ;
+                tiempo_trabajando = Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP.getDate()).getTime()) / (1000 * 60 * 60));
+                sueldo = Double.parseDouble(t_sueldoP.getText());
+                contraseña = t_contraseñaP.getText();
+
+                personas.add(new Personal(ocupacion, horario, tiempo_trabajando, sueldo, nombre, edad, id, sexo, estado_civil, contraseña));
+                System.out.println(personas.get(personas.size() - 1));
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel(); // capturamos la vista del modelo
+                modelo.addElement(personas.get(personas.size() - 1));
+                cb_personalModificar.setModel(modelo); // refrescamos
+                cb_eliminar.setModel(modelo);
+
+                t_nombreP.setText("");
+                t_edadP.setText("");
+                rb_fP.setSelected(true);
+                rb_mP.setSelected(false);
+                t_estadoCivilP.setText("");
+                t_ocupacion.setText("");
+                t_hE.setText("");
+                t_hS.setText("");
+                c_fechaP.setDate(new Date());
+                t_sueldoP.setText("");
+                t_contraseñaP.setText("");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
             }
-
-            estado_civil = t_estadoCivilP.getText();
-            ocupacion = t_ocupacion.getText();
-            horario = t_hE.getText() + "-" + t_hS.getText();
-            // long n = ((new Date()).getTime() -  (c_fechaP.getDate()).getTime() ) /(1000 * 60 * 60) ;
-            tiempo_trabajando = Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP.getDate()).getTime()) / (1000 * 60 * 60));
-            sueldo = Double.parseDouble(t_sueldoP.getText());
-            contraseña = t_contraseñaP.getText();
-
-            personas.add(new Personal(ocupacion, horario, tiempo_trabajando, sueldo, nombre, edad, id, sexo, estado_civil, contraseña));
-            System.out.println(personas.get(personas.size() - 1));
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel(); // capturamos la vista del modelo
-            modelo.addElement(personas.get(personas.size() - 1));
-            cb_personalModificar.setModel(modelo); // refrescamos
-            cb_eliminar.setModel(modelo);
-
-            t_nombreP.setText("");
-            t_edadP.setText("");
-            rb_fP.setSelected(true);
-            rb_mP.setSelected(false);
-            t_estadoCivilP.setText("");
-            t_ocupacion.setText("");
-            t_hE.setText("");
-            t_hS.setText("");
-            c_fechaP.setDate(new Date());
-            t_sueldoP.setText("");
-            t_contraseñaP.setText("");
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
 
     }//GEN-LAST:event_bt_guardarPMouseClicked
@@ -1047,124 +1061,138 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_contraseñaActionPerformed
 
     private void bt_guardarFMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarFMouseClicked
-        String nombre;
-        int edad;
-        int idF;
-        String sexo;
-        String estado_civil;
-        String contraseña;
-        String rol = "";
-        String trabajo;
-        double altura;
-        double peso;
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            String nombre;
+            int edad;
+            int idF;
+            String sexo;
+            String estado_civil;
+            String contraseña;
+            String rol = "";
+            String trabajo;
+            double altura;
+            double peso;
 
-        try {
-            nombre = t_nombre.getText();
-            edad = Integer.parseInt(t_edad.getText());
-            idF = id;
-            id++;
-            if (rb_f.isSelected()) {
-                sexo = "F";
-            } else {
-                sexo = "M";
+            try {
+                nombre = t_nombre.getText();
+                edad = Integer.parseInt(t_edad.getText());
+                idF = id;
+                id++;
+                if (rb_f.isSelected()) {
+                    sexo = "F";
+                } else {
+                    sexo = "M";
+                }
+
+                estado_civil = t_estadoCivil.getText();
+                contraseña = t_contraseña.getText();
+                trabajo = t_trabajo.getText();
+                altura = Double.parseDouble(t_altura.getText());
+                peso = Double.parseDouble(t_peso.getText());
+
+                if (cb_rolles.getSelectedItem().toString().equals("Madre") && madre == 0) {
+                    madre++;
+                    rol = cb_rolles.getSelectedItem().toString();
+                } else if (cb_rolles.getSelectedItem().toString().equals("Padre") && padre == 0) {
+                    padre++;
+                    rol = cb_rolles.getSelectedItem().toString();
+                } else if (cb_rolles.getSelectedItem().toString().equals("Hermana") && hermanas <= 4) {
+                    hermanas++;
+                    rol = cb_rolles.getSelectedItem().toString();
+                } else if (cb_rolles.getSelectedItem().toString().equals("Hermano") && hermano == 0) {
+                    hermano++;
+                    rol = cb_rolles.getSelectedItem().toString();
+                } else if (cb_rolles.getSelectedItem().toString().equals("Esposo") && esposo == 0) {
+                    esposo++;
+                    rol = cb_rolles.getSelectedItem().toString();
+                }
+
+                if (rol.length() > 0) {
+                    personas.add(new Familiar(rol, trabajo, altura, peso, nombre, edad, idF, sexo, estado_civil, contraseña));
+                    idF++;
+                    System.out.println(personas.get(personas.size() - 1));
+                    DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_dueño.getModel(); // capturamos la vista del modelo
+                    modelo.addElement(personas.get(personas.size() - 1));
+                    cb_dueño.setModel(modelo); // refrescamos
+                    cb_dueño1.setModel(modelo);
+                    cb_eliminar.setModel(modelo);
+                    cb_familiares.setModel(modelo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Es posible que ya no se puedad agregar usuarios con ese roll");
+                }
+
+                t_nombre.setText("");
+                t_edad.setText("");
+                rb_f.setSelected(true);
+                rb_m.setSelected(false);
+                t_estadoCivil.setText("");
+                t_contraseña.setText("");
+                t_trabajo.setText("");
+                t_altura.setText("");
+                t_peso.setText("");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
             }
-
-            estado_civil = t_estadoCivil.getText();
-            contraseña = t_contraseña.getText();
-            trabajo = t_trabajo.getText();
-            altura = Double.parseDouble(t_altura.getText());
-            peso = Double.parseDouble(t_peso.getText());
-
-            if (cb_rolles.getSelectedItem().toString().equals("Madre") && madre == 0) {
-                madre++;
-                rol = cb_rolles.getSelectedItem().toString();
-            } else if (cb_rolles.getSelectedItem().toString().equals("Padre") && padre == 0) {
-                padre++;
-                rol = cb_rolles.getSelectedItem().toString();
-            } else if (cb_rolles.getSelectedItem().toString().equals("Hermana") && hermanas <= 4) {
-                hermanas++;
-                rol = cb_rolles.getSelectedItem().toString();
-            } else if (cb_rolles.getSelectedItem().toString().equals("Hermano") && hermano == 0) {
-                hermano++;
-                rol = cb_rolles.getSelectedItem().toString();
-            } else if (cb_rolles.getSelectedItem().toString().equals("Esposo") && esposo == 0) {
-                esposo++;
-                rol = cb_rolles.getSelectedItem().toString();
-            }
-
-            if (rol.length() > 0) {
-                personas.add(new Familiar(rol, trabajo, altura, peso, nombre, edad, idF, sexo, estado_civil, contraseña));
-                idF++;
-                System.out.println(personas.get(personas.size() - 1));
-                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_dueño.getModel(); // capturamos la vista del modelo
-                modelo.addElement(personas.get(personas.size() - 1));
-                cb_dueño.setModel(modelo); // refrescamos
-                cb_dueño1.setModel(modelo);
-                cb_eliminar.setModel(modelo);
-                cb_familiares.setModel(modelo);
-            } else {
-                JOptionPane.showMessageDialog(null, "Es posible que ya no se puedad agregar usuarios con ese roll");
-            }
-
-            t_nombre.setText("");
-            t_edad.setText("");
-            rb_f.setSelected(true);
-            rb_m.setSelected(false);
-            t_estadoCivil.setText("");
-            t_contraseña.setText("");
-            t_trabajo.setText("");
-            t_altura.setText("");
-            t_peso.setText("");
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error Fatal, Reinicie su computadora!!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
+
     }//GEN-LAST:event_bt_guardarFMouseClicked
 
     private void bt_zapatos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_zapatos1MouseClicked
-        Color color;
-        String descripcion;
-        String marca;
-        int tamano;
-        int calidad;
-        double precio;
-        String dueño;
-        int talla;
-        String suela;
-        int confort;
-        try {
-            color = bt_color.getBackground();
-            descripcion = ta_descripcion1.getText();
-            marca = t_marca.getText();
-            tamano = Integer.parseInt(t_tamano.getText());
-            calidad = Integer.parseInt(t_calidad.getText());
-            precio = Double.parseDouble(t_precio.getText());
-            dueño = cb_dueño.getSelectedItem().toString();
-            talla = Integer.parseInt(t_tallaZ.getText());
-            suela = t_suela.getText();
-            confort = Integer.parseInt(t_confort.getText());
 
-            objetos.add(new Zapatos(talla, suela, confort, color, descripcion, marca, tamano, calidad, precio, dueño));
-            System.out.println(objetos.get(objetos.size() - 1));
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
-            modelo.addElement(objetos.get(objetos.size() - 1));
-            cb_objetos.setModel(modelo); // refrescamos
-            cb_ObjetosModificar.setModel(modelo);
-            cb_objetos1.setModel(modelo);
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            Color color;
+            String descripcion;
+            String marca;
+            int tamano;
+            int calidad;
+            double precio;
+            String dueño;
+            int talla;
+            String suela;
+            int confort;
+            try {
+                color = bt_color.getBackground();
+                descripcion = ta_descripcion1.getText();
+                marca = t_marca.getText();
+                tamano = Integer.parseInt(t_tamano.getText());
+                calidad = Integer.parseInt(t_calidad.getText());
+                precio = Double.parseDouble(t_precio.getText());
+                dueño = cb_dueño.getSelectedItem().toString();
+                talla = Integer.parseInt(t_tallaZ.getText());
+                suela = t_suela.getText();
+                confort = Integer.parseInt(t_confort.getText());
 
-            bt_color.setBackground(color.red);
-            ta_descripcion1.setText("");
-            t_marca.setText("");
-            t_tamano.setText("");
-            t_calidad.setText("");
-            t_precio.setText("");
-            t_tallaZ.setText("");
-            t_suela.setText("");
-            t_confort.setText("");
+                objetos.add(new Zapatos(talla, suela, confort, color, descripcion, marca, tamano, calidad, precio, dueño));
+                System.out.println(objetos.get(objetos.size() - 1));
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
+                modelo.addElement(objetos.get(objetos.size() - 1));
+                cb_objetos.setModel(modelo); // refrescamos
+                cb_ObjetosModificar.setModel(modelo);
+                cb_objetos1.setModel(modelo);
 
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+                bt_color.setBackground(color.red);
+                ta_descripcion1.setText("");
+                t_marca.setText("");
+                t_tamano.setText("");
+                t_calidad.setText("");
+                t_precio.setText("");
+                t_tallaZ.setText("");
+                t_suela.setText("");
+                t_confort.setText("");
 
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
 
     }//GEN-LAST:event_bt_zapatos1MouseClicked
@@ -1174,96 +1202,112 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_colorMouseClicked
 
     private void bt_RopaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_RopaMouseClicked
-        Color color;
-        String descripcion;
-        String marca;
-        int tamano;
-        int calidad;
-        double precio;
-        String dueño;
-        String talla;
-        String material;
-        String pais;
 
-        try {
-            color = bt_color.getBackground();
-            descripcion = ta_descripcion1.getText();
-            marca = t_marca.getText();
-            tamano = Integer.parseInt(t_tamano.getText());
-            calidad = Integer.parseInt(t_calidad.getText());
-            precio = Double.parseDouble(t_precio.getText());
-            dueño = cb_dueño.getSelectedItem().toString();
-            talla = t_tallaRopa.getText();
-            material = t_material.getText();
-            pais = t_paisElaboracion.getText();
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            Color color;
+            String descripcion;
+            String marca;
+            int tamano;
+            int calidad;
+            double precio;
+            String dueño;
+            String talla;
+            String material;
+            String pais;
 
-            objetos.add(new Ropa(talla, material, pais, color, descripcion, marca, tamano, calidad, precio, dueño));
-            System.out.println(objetos.get(objetos.size() - 1));
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
-            modelo.addElement(objetos.get(objetos.size() - 1));
-            cb_objetos.setModel(modelo); // refrescamos
-            cb_objetos1.setModel(modelo);
+            try {
+                color = bt_color.getBackground();
+                descripcion = ta_descripcion1.getText();
+                marca = t_marca.getText();
+                tamano = Integer.parseInt(t_tamano.getText());
+                calidad = Integer.parseInt(t_calidad.getText());
+                precio = Double.parseDouble(t_precio.getText());
+                dueño = cb_dueño.getSelectedItem().toString();
+                talla = t_tallaRopa.getText();
+                material = t_material.getText();
+                pais = t_paisElaboracion.getText();
 
-            bt_color.setBackground(color.red);
-            ta_descripcion1.setText("");
-            t_marca.setText("");
-            t_tamano.setText("");
-            t_calidad.setText("");
-            t_tallaRopa.setText("");
-            t_material.setText("");
-            t_paisElaboracion.setText("");
+                objetos.add(new Ropa(talla, material, pais, color, descripcion, marca, tamano, calidad, precio, dueño));
+                System.out.println(objetos.get(objetos.size() - 1));
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
+                modelo.addElement(objetos.get(objetos.size() - 1));
+                cb_objetos.setModel(modelo); // refrescamos
+                cb_objetos1.setModel(modelo);
 
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+                bt_color.setBackground(color.red);
+                ta_descripcion1.setText("");
+                t_marca.setText("");
+                t_tamano.setText("");
+                t_calidad.setText("");
+                t_tallaRopa.setText("");
+                t_material.setText("");
+                t_paisElaboracion.setText("");
 
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
     }//GEN-LAST:event_bt_RopaMouseClicked
 
     private void bt_guardarHogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarHogarMouseClicked
-        Color color;
-        String descripcion;
-        String marca;
-        int tamano;
-        int calidad;
-        double precio;
-        String dueño;
-        int tiempo;
-        String area;
-        String instruccion;
-        Date fecha;
 
-        try {
-            color = bt_color.getBackground();
-            descripcion = ta_descripcion1.getText();
-            marca = t_marca.getText();
-            tamano = Integer.parseInt(t_tamano.getText());
-            calidad = Integer.parseInt(t_calidad.getText());
-            precio = Double.parseDouble(t_precio.getText());
-            dueño = cb_dueño.getSelectedItem().toString();
-            tiempo = Integer.parseInt(t_tiempoVida.getText());
-            area = cb_area.getSelectedItem().toString();
-            instruccion = ta_descripcion.getText();
-            fecha = c_fechaObjeto.getDate();
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            Color color;
+            String descripcion;
+            String marca;
+            int tamano;
+            int calidad;
+            double precio;
+            String dueño;
+            int tiempo;
+            String area;
+            String instruccion;
+            Date fecha;
 
-            objetos.add(new ObjetoHogar(tiempo, area, instruccion, fecha, color, descripcion, marca, tamano, calidad, precio, dueño));
-            System.out.println(objetos.get(objetos.size() - 1));
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
-            modelo.addElement(objetos.get(objetos.size() - 1));
-            cb_objetos.setModel(modelo); // refrescamos
-            cb_objetos1.setModel(modelo);
+            try {
+                color = bt_color.getBackground();
+                descripcion = ta_descripcion1.getText();
+                marca = t_marca.getText();
+                tamano = Integer.parseInt(t_tamano.getText());
+                calidad = Integer.parseInt(t_calidad.getText());
+                precio = Double.parseDouble(t_precio.getText());
+                dueño = cb_dueño.getSelectedItem().toString();
+                tiempo = Integer.parseInt(t_tiempoVida.getText());
+                area = cb_area.getSelectedItem().toString();
+                instruccion = ta_descripcion.getText();
+                fecha = c_fechaObjeto.getDate();
 
-            bt_color.setBackground(color.red);
-            ta_descripcion1.setText("");
-            t_marca.setText("");
-            t_tamano.setText("");
-            t_calidad.setText("");
-            t_tiempoVida.setText("");
-            ta_descripcion.setText("");
-            c_fechaObjeto.setDate(new Date());
+                objetos.add(new ObjetoHogar(tiempo, area, instruccion, fecha, color, descripcion, marca, tamano, calidad, precio, dueño));
+                System.out.println(objetos.get(objetos.size() - 1));
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_objetos.getModel(); // capturamos la vista del modelo
+                modelo.addElement(objetos.get(objetos.size() - 1));
+                cb_objetos.setModel(modelo); // refrescamos
+                cb_objetos1.setModel(modelo);
 
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+                bt_color.setBackground(color.red);
+                ta_descripcion1.setText("");
+                t_marca.setText("");
+                t_tamano.setText("");
+                t_calidad.setText("");
+                t_tiempoVida.setText("");
+                ta_descripcion.setText("");
+                c_fechaObjeto.setDate(new Date());
 
+            } catch (Exception e) {
+                JOptionPane.showConfirmDialog(this, "Error, no se guardaron los datos");
+
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
     }//GEN-LAST:event_bt_guardarHogarMouseClicked
 
@@ -1280,29 +1324,35 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_guardarP1MouseDragged
 
     private void bt_guardarP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarP1MouseClicked
-        try {
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel();
-            ((Personal) modelo.getSelectedItem()).setContraseña(t_contraseñaP1.getText());
-            ((Personal) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edadP1.getText()));
-            ((Personal) modelo.getSelectedItem()).setHorario(t_hEP1.getText() + "-" + t_hSP1.getText());
-            ((Personal) modelo.getSelectedItem()).setEstado_civil(t_estadoCivilP1.getText());
-            ((Personal) modelo.getSelectedItem()).setNombre(t_nombreP1.getText());
-            ((Personal) modelo.getSelectedItem()).setOcupacion(t_ocupacionP1.getText());
-            if(rb_fP1.isSelected()){
-                ((Personal) modelo.getSelectedItem()).setSexo("F");
-            }else{
-                ((Personal) modelo.getSelectedItem()).setSexo("M");
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            try {
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_personalModificar.getModel();
+                ((Personal) modelo.getSelectedItem()).setContraseña(t_contraseñaP1.getText());
+                ((Personal) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edadP1.getText()));
+                ((Personal) modelo.getSelectedItem()).setHorario(t_hEP1.getText() + "-" + t_hSP1.getText());
+                ((Personal) modelo.getSelectedItem()).setEstado_civil(t_estadoCivilP1.getText());
+                ((Personal) modelo.getSelectedItem()).setNombre(t_nombreP1.getText());
+                ((Personal) modelo.getSelectedItem()).setOcupacion(t_ocupacionP1.getText());
+                if (rb_fP1.isSelected()) {
+                    ((Personal) modelo.getSelectedItem()).setSexo("F");
+                } else {
+                    ((Personal) modelo.getSelectedItem()).setSexo("M");
+                }
+
+                ((Personal) modelo.getSelectedItem()).setSueldo(Double.parseDouble(t_sueldoP1.getText()));
+                ((Personal) modelo.getSelectedItem()).setTiempo_trabajando(Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP1.getDate()).getTime()) / (1000 * 60 * 60)));
+                cb_personalModificar.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
             }
 
-            ((Personal) modelo.getSelectedItem()).setSueldo(Double.parseDouble(t_sueldoP1.getText()));
-            ((Personal) modelo.getSelectedItem()).setTiempo_trabajando(Integer.parseInt("" + ((new Date()).getTime() - (c_fechaP1.getDate()).getTime()) / (1000 * 60 * 60)));
-            cb_personalModificar.setModel(modelo);
-            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
-
-
     }//GEN-LAST:event_bt_guardarP1MouseClicked
 
     private void t_nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_nombre1ActionPerformed
@@ -1310,28 +1360,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_nombre1ActionPerformed
 
     private void bt_guardarF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarF1MouseClicked
-        try {
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_familiares.getModel();
-            ((Familiar) modelo.getSelectedItem()).setAltura(Double.parseDouble(t_altura1.getText()));
-            ((Familiar) modelo.getSelectedItem()).setContraseña(t_contraseña1.getText());
-            ((Familiar) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edad1.getText()));
-            ((Familiar) modelo.getSelectedItem()).setEstado_civil(t_estadoCivil1.getText());
-            ((Familiar) modelo.getSelectedItem()).setNombre(t_nombre1.getText());
-            ((Familiar) modelo.getSelectedItem()).setPeso(Double.parseDouble(t_peso1.getText()));
-            ((Familiar) modelo.getSelectedItem()).setRol(Roll_familiar.getText());
-            ((Familiar) modelo.getSelectedItem()).setTrabajo(t_trabajo1.getText());
-            if(rb_f1.isSelected()){
-                ((Familiar) modelo.getSelectedItem()).setSexo("F");
-            }else{
-                ((Familiar) modelo.getSelectedItem()).setSexo("M");
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            try {
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_familiares.getModel();
+                ((Familiar) modelo.getSelectedItem()).setAltura(Double.parseDouble(t_altura1.getText()));
+                ((Familiar) modelo.getSelectedItem()).setContraseña(t_contraseña1.getText());
+                ((Familiar) modelo.getSelectedItem()).setEdad(Integer.parseInt(t_edad1.getText()));
+                ((Familiar) modelo.getSelectedItem()).setEstado_civil(t_estadoCivil1.getText());
+                ((Familiar) modelo.getSelectedItem()).setNombre(t_nombre1.getText());
+                ((Familiar) modelo.getSelectedItem()).setPeso(Double.parseDouble(t_peso1.getText()));
+                ((Familiar) modelo.getSelectedItem()).setRol(Roll_familiar.getText());
+                ((Familiar) modelo.getSelectedItem()).setTrabajo(t_trabajo1.getText());
+                if (rb_f1.isSelected()) {
+                    ((Familiar) modelo.getSelectedItem()).setSexo("F");
+                } else {
+                    ((Familiar) modelo.getSelectedItem()).setSexo("M");
+                }
+
+                cb_familiares.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error del sistema");
             }
-            
-            
-            
-            cb_familiares.setModel(modelo);
-            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error del sistema");
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
     }//GEN-LAST:event_bt_guardarF1MouseClicked
 
@@ -1348,70 +1402,92 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_t_suela1ActionPerformed
 
     private void bt_Ropa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_Ropa1MouseClicked
-        try {
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
-            ((Ropa) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
-            ((Ropa) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
-            ((Ropa) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
-            ((Ropa) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
-            ((Ropa) modelo.getSelectedItem()).setMarca(t_marca1.getText());
-            ((Ropa) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
-            ((Ropa) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
-            ((Ropa) modelo.getSelectedItem()).setMaterial(t_material1.getText());
-            ((Ropa) modelo.getSelectedItem()).setPais(t_paisElaboracion1.getText());
-            ((Ropa) modelo.getSelectedItem()).setTalla(t_tallaRopa1.getText());
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            try {
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+                ((Ropa) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+                ((Ropa) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+                ((Ropa) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+                ((Ropa) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+                ((Ropa) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+                ((Ropa) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+                ((Ropa) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+                ((Ropa) modelo.getSelectedItem()).setMaterial(t_material1.getText());
+                ((Ropa) modelo.getSelectedItem()).setPais(t_paisElaboracion1.getText());
+                ((Ropa) modelo.getSelectedItem()).setTalla(t_tallaRopa1.getText());
 
-            cb_ObjetosModificar.setModel(modelo);
-            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error del sistema");
+                cb_ObjetosModificar.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error del sistema");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
+
         }
     }//GEN-LAST:event_bt_Ropa1MouseClicked
 
     private void bt_zapatos2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_zapatos2MouseClicked
-        try {
-            ob1.setCalidad(Integer.parseInt(t_calidad1.getText()));
-            ob1.setColor(bt_color1.getBackground());
-            //ob1.setConfort();
 
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
-            ((Zapatos) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
-            ((Zapatos) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
-            ((Zapatos) modelo.getSelectedItem()).setConfort(Integer.parseInt(t_confort1.getText()));
-            ((Zapatos) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
-            ((Zapatos) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
-            ((Zapatos) modelo.getSelectedItem()).setMarca(t_marca1.getText());
-            ((Zapatos) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
-            ((Zapatos) modelo.getSelectedItem()).setSuela(t_suela1.getText());
-            ((Zapatos) modelo.getSelectedItem()).setTalla(Integer.parseInt(t_tallaZ1.getText()));
-            ((Zapatos) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            try {
+                ob1.setCalidad(Integer.parseInt(t_calidad1.getText()));
+                ob1.setColor(bt_color1.getBackground());
+                //ob1.setConfort();
 
-            cb_ObjetosModificar.setModel(modelo);
-            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+                ((Zapatos) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+                ((Zapatos) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+                ((Zapatos) modelo.getSelectedItem()).setConfort(Integer.parseInt(t_confort1.getText()));
+                ((Zapatos) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+                ((Zapatos) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+                ((Zapatos) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+                ((Zapatos) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+                ((Zapatos) modelo.getSelectedItem()).setSuela(t_suela1.getText());
+                ((Zapatos) modelo.getSelectedItem()).setTalla(Integer.parseInt(t_tallaZ1.getText()));
+                ((Zapatos) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+
+                cb_ObjetosModificar.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Asegurece de estar ingresando correctamente los datos");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
 
     }//GEN-LAST:event_bt_zapatos2MouseClicked
 
     private void bt_guardarHogar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarHogar1MouseClicked
-        try {
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
-            ((ObjetoHogar) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
-            ((ObjetoHogar) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
-            ((ObjetoHogar) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
-            ((ObjetoHogar) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
-            ((ObjetoHogar) modelo.getSelectedItem()).setMarca(t_marca1.getText());
-            ((ObjetoHogar) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
-            ((ObjetoHogar) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
-            ((ObjetoHogar) modelo.getSelectedItem()).setFecha(c_fechaObjeto1.getDate());
-            ((ObjetoHogar) modelo.getSelectedItem()).setInstrucciones(ta_descripcion2.getText());
-            ((ObjetoHogar) modelo.getSelectedItem()).setTiempo(Integer.parseInt(t_tiempoVida1.getText()));
-            ((ObjetoHogar) modelo.getSelectedItem()).setArea(cb_area1.getSelectedItem().toString());
-            cb_ObjetosModificar.setModel(modelo);
-            JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error del sistema");
+        String n = JOptionPane.showInputDialog("Ingresa tu nombre: ");
+        String c = JOptionPane.showInputDialog("Ingresa tu contraseña: ");
+        if (n.equals("kim") && c.equals("123")) {
+            try {
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_ObjetosModificar.getModel();
+                ((ObjetoHogar) modelo.getSelectedItem()).setColor(bt_color1.getBackground());
+                ((ObjetoHogar) modelo.getSelectedItem()).setCalidad(Integer.parseInt(t_calidad1.getText()));
+                ((ObjetoHogar) modelo.getSelectedItem()).setDescripcion(ta_descripcion3.getText());
+                ((ObjetoHogar) modelo.getSelectedItem()).setDueño(cb_dueño1.getSelectedItem().toString());
+                ((ObjetoHogar) modelo.getSelectedItem()).setMarca(t_marca1.getText());
+                ((ObjetoHogar) modelo.getSelectedItem()).setPrecio(Integer.parseInt(t_precio1.getText()));
+                ((ObjetoHogar) modelo.getSelectedItem()).setTamano(Integer.parseInt(t_tamano1.getText()));
+                ((ObjetoHogar) modelo.getSelectedItem()).setFecha(c_fechaObjeto1.getDate());
+                ((ObjetoHogar) modelo.getSelectedItem()).setInstrucciones(ta_descripcion2.getText());
+                ((ObjetoHogar) modelo.getSelectedItem()).setTiempo(Integer.parseInt(t_tiempoVida1.getText()));
+                ((ObjetoHogar) modelo.getSelectedItem()).setArea(cb_area1.getSelectedItem().toString());
+                cb_ObjetosModificar.setModel(modelo);
+                JOptionPane.showMessageDialog(this, "Modificado Exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error del sistema");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Solo el adiminstrador tiene este acceso");
         }
     }//GEN-LAST:event_bt_guardarHogar1MouseClicked
 
@@ -1507,22 +1583,30 @@ public class Principal extends javax.swing.JFrame {
             Familiar b = (Familiar) cb_familiares.getSelectedItem();
             this.t_nombre1.setText(b.getNombre());
             this.t_contraseña1.setText(b.getContraseña());
-            this.t_edad1.setText(""+b.getEdad());
+            this.t_edad1.setText("" + b.getEdad());
             this.t_estadoCivil1.setText(b.getEstado_civil());
-            if(b.getSexo().equals("F")){
+            if (b.getSexo().equals("F")) {
                 this.rb_f1.setSelected(true);
                 this.rb_m1.setSelected(false);
-            }else{
+            } else {
                 this.rb_f1.setSelected(false);
                 this.rb_m1.setSelected(true);
             }
-            
+
             this.Roll_familiar.setText(b.getRol());
-            this.t_altura1.setText(""+b.getAltura());
-            this.t_peso1.setText(""+b.getPeso());
-            
+            this.t_altura1.setText("" + b.getAltura());
+            this.t_peso1.setText("" + b.getPeso());
+
         }
     }//GEN-LAST:event_cb_familiaresItemStateChanged
+
+    private void bt_RopaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_RopaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_RopaActionPerformed
+
+    private void bt_guardarHogar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_guardarHogar1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_guardarHogar1MouseEntered
 
     /**
      * @param args the command line arguments
@@ -1764,6 +1848,9 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     ArrayList<Persona> personas = new ArrayList();
+    String nombre = "kim";
+    int contraseña = 123;
+
     ArrayList<Objeto> objetos = new ArrayList();
     int madre = 0;
     int padre = 0;
