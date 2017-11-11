@@ -1730,9 +1730,13 @@ public class Principal extends javax.swing.JFrame {
         
         CifradoTrans mC = new CifradoTrans(texto, texto);
         String mCriptado = mC.Cifrar();
+        System.out.println("primer incriptado "+mCriptado);
+        String CCriptado = mC.cifradoCesar(mCriptado, 45454);
+        System.out.println("segundo incriptado "+CCriptado);
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_destinatario.getModel();
         ((Persona) modelo.getSelectedItem()).getLista().add(mCriptado);
-        ta_enviado.setText(mCriptado);
+        ta_enviado.setText(CCriptado);
+        ta_mEnviar.setText("");
         
     }//GEN-LAST:event_jButton2MouseClicked
 
