@@ -2,15 +2,18 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-*/
+ */
 
-
-public class Cifrado {
+/**
+ *
+ * @author 1234
+ */
+public class CifradoTrans {
 
     public static String TxT, Seed;
     public static String Charset = "abcdefghijklmnopqrstuvwxyz";
 
-    public Cifrado(String TxT, String Seed) {
+    public CifradoTrans(String TxT, String Seed) {
         this.Seed = Desn(Seed);
         this.TxT = TxT;
     }
@@ -30,6 +33,7 @@ public class Cifrado {
     }
 
     public static String DesCifrar() {
+
         String DesCifrado = "";
         String a = TxT.toLowerCase();
         for (int n = 0, c = 0; n < a.length(); n++, c = (c + 1) % Seed.length()) {
@@ -45,6 +49,30 @@ public class Cifrado {
         return DesCifrado;
     }
 
+    public static String getTxT() {
+        return TxT;
+    }
+
+    public static void setTxT(String TxT) {
+        CifradoTrans.TxT = TxT;
+    }
+
+    public static String getSeed() {
+        return Seed;
+    }
+
+    public static void setSeed(String Seed) {
+        CifradoTrans.Seed = Seed;
+    }
+
+    public static String getCharset() {
+        return Charset;
+    }
+
+    public static void setCharset(String Charset) {
+        CifradoTrans.Charset = Charset;
+    }
+
     public static String Desn(String a) {
         String b = "";
         for (int n = 0; n < a.length(); n++) {
@@ -55,7 +83,7 @@ public class Cifrado {
         return b;
     }
 
-    Cifrado() {
+    CifradoTrans() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
